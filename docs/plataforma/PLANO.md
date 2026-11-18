@@ -1,6 +1,8 @@
 # Plataforma de bombeio Enpulse — plano técnico e lógico
 
-**Estado:** proposta de arquitetura e execução, 18/11/2026. **Projeto Supabase usado na criação:** `pedido-bombeio` (`qzrwgxxltwzlkszozoca`). **Novo schema:** `enpulse_bombeio`, criado e verificado privado. **Atenção operacional:** uma verificação posterior encontrou o projeto indisponível pela Management API e pelo DNS; confirmar seu estado antes de nova migração. As demais estruturas descritas aqui ainda são alvo de implementação.
+> Revisão pós-reunião: [requisitos de 17/11 e plano inicial de frontend](REVISAO_REUNIAO_E_PLANO_FRONTEND.md). Ela explicita D+1, janela de envio, programação de sexta, análise de estoque e as diferenças em relação a esta arquitetura inicial.
+
+**Estado:** arquitetura de referência com implementação local em `feat/plataforma-enpulse`, 18/11/2026. **Projeto Supabase de destino:** ainda não criado. **Schema de domínio:** `enpulse_bombeio`, definido nas migrações locais. A antiga referência `qzrwgxxltwzlkszozoca` não é alvo de implantação. A ativação está em [ATIVACAO.md](ATIVACAO.md).
 
 ## 1. Resultado esperado e situação atual
 
@@ -166,7 +168,7 @@ Todos os contratos incluem `request_id`, erro estável (`codigo`, `mensagem`, `c
 
 ## 8. Migração sem perda de histórico
 
-1. **Preparar:** confirmar/restabelecer o projeto remoto e verificar novamente o schema privado criado; registrar snapshot de contagem, chaves e estados em `public`, sem alterar o fluxo atual.
+1. **Preparar:** criar o projeto Supabase de destino, aplicar as migrações e registrar snapshot de contagem, chaves e estados do legado, se houver origem a importar.
 2. **Expandir:** criar tabelas, funções, grants, RLS e dados de catálogo por migrações incrementais. Exercitar em base de teste com dados sintéticos; só depois habilitar a exposição do schema.
 3. **Importar:** mapear CNPJ legado para cliente; CNPJ desconhecido vira cadastro inativo para reconciliação. Importar cada pedido e seus seis valores com vínculo ao id original, horário e indicador de prazo preservados. Validar totais e amostras por dia/produto.
 4. **Corte:** habilitar novo portal e rota, bloquear novas escritas na rota legada somente no instante da troca; importar delta final; conferir contagens. Manter `public` disponível para consulta e reversão, sem apagar tabelas.
@@ -195,7 +197,7 @@ Tickets verticais e dependências estão em `.scratch/enpulse-plataforma/issues/
 4. Quem pode confirmar/recusar, quais motivos são obrigatórios, e qual o SLA real de confirmação por base?
 5. Período de retenção, destinatários de notificações e regras de exportação de dados.
 
-Enquanto essas decisões não forem fechadas, as especificações marcam suposições e as fatias dependentes não entram em produção.
+Premissas implementadas localmente para permitir a revisão: integrantes entram por OTP de e-mail com vínculo individual; gestor confirma ajustes diretamente com motivo público; reenvio é permitido enquanto o pedido estiver `recebido` ou `em_analise`, no mesmo dia operacional. A Enpulse deve validar essas regras antes do corte. A implementação local cobre acesso, envio, reenvio, consulta, operação, exportação auditada e trabalhador de notificações configurável. Administração de cadastros, importação do legado, agendamento do trabalhador e ativação remota permanecem etapas posteriores.
 
 ## Fontes técnicas consultadas
 

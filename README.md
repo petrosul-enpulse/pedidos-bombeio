@@ -1,6 +1,6 @@
 # Pedido de Bombeio | Base Paulínia (MVP)
 
-> **Evolução em planejamento:** a plataforma de dois portais está descrita em [docs/plataforma/PLANO.md](docs/plataforma/PLANO.md) e governada por [AGENTS.md](AGENTS.md). O schema `enpulse_bombeio` foi criado e verificado vazio/privado, mas o projeto remoto deixou de aparecer na conexão na verificação posterior. É preciso confirmar sua disponibilidade antes de continuar migrações. A aplicação atual ainda aponta para o modelo legado em `public`.
+> **Nova plataforma em branch:** `feat/plataforma-enpulse` contém os portais `/cliente` e `/operacao`, acesso individual, pedidos e reenvios, fila operacional, exportação CSV auditada, trabalhador de notificações e migrações do schema `enpulse_bombeio`. O projeto Supabase de destino ainda será criado. Veja [ativação](docs/plataforma/ATIVACAO.md) e [arquitetura](docs/plataforma/PLANO.md). A página `/` e `/api/pedidos` continuam no modelo legado.
 
 Formulário web para o cliente enviar o pedido de bombeio do dia (BPMN: até 12h), substituindo WhatsApp/telefone + digitação na planilha `bombeiopedido.xlsx`.
 
@@ -26,14 +26,14 @@ docs/CONTAS.md            passo a passo GitHub, Vercel, Supabase
 
 ## Rodar local
 ```bash
-cp .env.example .env.local   # preencher SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY
-npm install
-npm test                     # testes de CNPJ e horário de corte
-npm run dev                  # http://localhost:3000
+Copy-Item .env.example .env.local  # preencher variáveis do ambiente escolhido
+pnpm install
+pnpm test                     # regras legadas e migrações/RLS locais
+pnpm dev                      # http://localhost:3000
 ```
 
 ## Publicar
-Para o MVP legado, ver `docs/CONTAS.md`. O deploy manual do projeto existente na Vercel está descrito em [docs/DEPLOY_VERCEL.md](docs/DEPLOY_VERCEL.md). Antes de publicar, confirme a disponibilidade do projeto Supabase e as variáveis de produção na Vercel.
+Para o MVP legado, ver `docs/CONTAS.md`. O deploy manual existente na Vercel está descrito em [docs/DEPLOY_VERCEL.md](docs/DEPLOY_VERCEL.md). A nova plataforma exige a sequência de [ativação](docs/plataforma/ATIVACAO.md) antes de entrar em produção.
 
 ## Consultar os pedidos do dia (SQL Editor do Supabase)
 ```sql

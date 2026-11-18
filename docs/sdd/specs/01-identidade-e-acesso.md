@@ -1,6 +1,6 @@
 # 01 — Identidade e acesso aos dois portais
 
-**Estado:** proposta; método de login interno pendente de decisão.
+**Estado:** implementação local; ativação remota e método final de login interno pendentes.
 **Atores:** usuário do cliente, integrante Enpulse, administrador.
 **Dependências:** cadastro inicial de clientes e de integrantes; configuração de e-mail/SSO por ambiente.
 
@@ -41,3 +41,8 @@ Contar solicitações, verificações falhas, bloqueios e revogações por ident
 
 - Enpulse ainda não definiu se o portal interno usa SSO corporativo ou convite com e-mail/MFA. Dono: TI Enpulse.
 - Lista inicial de clientes, contatos e bases autorizadas. Dono: operação Enpulse.
+
+## Evidências locais
+
+- Portais `/acesso`, `/cliente` e `/operacao` usam Supabase Auth por OTP e vínculos no schema `enpulse_bombeio`. OTP individual para integrantes é premissa provisória.
+- `pnpm test` aplica migrações e verifica isolamento de cliente A/B e bloqueio do papel de leitura em mutações. `pnpm run build` verifica as rotas e tipos. A validação com JWTs e e-mails reais depende do projeto Supabase novo.

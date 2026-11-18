@@ -1,6 +1,6 @@
 # Instruções do projeto
 
-Este repositório evolui do formulário atual para a plataforma de bombeio da Enpulse. Antes de alterar um fluxo, leia [o plano](docs/plataforma/PLANO.md), [o glossário](GLOSSARY.md), [o harness SDD](docs/sdd/README.md) e [as responsabilidades](docs/sdd/RESPONSABILIDADES.md). A migração inicial criou apenas o namespace `enpulse_bombeio` e foi verificada; uma consulta posterior não encontrou o projeto remoto. Confirme disponibilidade e referência antes de qualquer nova ação no Supabase. O aplicativo atual aponta para o modelo legado em `public`.
+Este repositório evolui do formulário legado para a plataforma de bombeio da Enpulse. Antes de alterar um fluxo, leia [o plano](docs/plataforma/PLANO.md), [o glossário](GLOSSARY.md), [o harness SDD](docs/sdd/README.md) e [as responsabilidades](docs/sdd/RESPONSABILIDADES.md). O novo projeto Supabase ainda não existe; as migrações do schema `enpulse_bombeio` estão preparadas localmente. Quando o projeto for criado, siga [a ativação](docs/plataforma/ATIVACAO.md). O formulário em `/` ainda usa o legado em `public`.
 
 ## Responsabilidade de cada mudança
 
@@ -12,7 +12,7 @@ Este repositório evolui do formulário atual para a plataforma de bombeio da En
 ## Ações no projeto e no Supabase
 
 1. Defina cenário, invariantes, estados de erro e critérios observáveis no formato de `docs/sdd/feature-template.md`. A especificação aprovada é a referência da implementação.
-2. Para mudança de dados, escreva migração incremental em `supabase/migrations/`. Leia o estado remoto, confira o alvo `qzrwgxxltwzlkszozoca`, aplique em ambiente de teste e registre evidência de reversão antes de produção.
+2. Para mudança de dados, escreva migração incremental em `supabase/migrations/`. Antes de aplicar remotamente, confirme a referência do novo projeto Enpulse e seu estado real, teste com dados sintéticos e registre evidência de reversão.
 3. Em `enpulse_bombeio`, conceda somente privilégios exigidos pela funcionalidade. Ative RLS antes de expor tabelas; teste com perfis anônimo, cliente A, cliente B, operador e administrador. A chave `service_role` pertence apenas a operações administrativas controladas no servidor.
 4. Implemente a fatia no Next.js e valide contrato de entrada/saída, autorização, idempotência e estado visual. Nunca registre OTP, sessão ou chave em logs.
 5. Rode os gates de `docs/sdd/VERIFICACAO.md`, anexe resultados à especificação e só marque a fatia concluída quando cliente e Enpulse conseguirem observar o resultado previsto.

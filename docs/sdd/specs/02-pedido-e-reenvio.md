@@ -1,6 +1,6 @@
 # 02 — Pedido, prazo e reenvio
 
-**Estado:** proposta.
+**Estado:** implementação local; validação no projeto Supabase pendente.
 **Atores:** usuário do cliente e integrante Enpulse em leitura.
 **Dependências:** `01-identidade-e-acesso.md`, catálogo e regras operacionais vigentes.
 
@@ -42,3 +42,8 @@ Medir envios aceitos, rejeições por regra, tentativas repetidas e erros de gra
 
 - Regra para reenvio depois que a Enpulse assumiu ou confirmou o pedido. Dono: operação Enpulse.
 - Limites por produto e base, e se a previsão D+1 é obrigatória em algum cenário. Dono: operação Enpulse.
+
+## Evidências locais
+
+- `criar_pedido` valida vínculo, catálogo, volumes, prazo e chave de idempotência na mesma transação. O reenvio preserva o pedido anterior e cria evento para cada versão.
+- `pnpm test` verifica cliente B sem leitura do pedido A, repetição da chave sem duplicidade, novo protocolo no reenvio e status `substituido` no anterior. O corte do banco com relógio controlado e a jornada real de e-mail dependem de ambiente Supabase.
