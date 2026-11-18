@@ -1,5 +1,6 @@
 -- =====================================================================
--- Pedido de Bombeio - Base Paulínia (MVP)
+-- Pedido de Bombeio - Base Paulínia (MVP legado em public)
+-- Nova plataforma: ver supabase/migrations/ e docs/plataforma/PLANO.md.
 -- Rodar no Supabase: SQL Editor > New query > colar tudo > Run
 -- =====================================================================
 

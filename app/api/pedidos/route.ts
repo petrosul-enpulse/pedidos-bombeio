@@ -43,7 +43,7 @@ export async function POST(req: Request) {
     const { data, error } = await supabaseAdmin()
       .from("pedidos_bombeio")
       .insert(linha)
-      .select("id, data_pedido, hora_envio_local, dentro_prazo")
+      .select("id, cnpj, data_pedido, hora_envio_local, dentro_prazo, gas_a_bombeio, gas_a_previsao_venda, s500_a_bombeio, s500_a_previsao_venda, s10_a_bombeio, s10_a_previsao_venda")
       .single();
     if (error) throw error;
     return NextResponse.json({ ok: true, pedido: data }, { status: 201 });

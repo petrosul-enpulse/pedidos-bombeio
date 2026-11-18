@@ -1,5 +1,7 @@
 # Passo a passo: contas GitHub, Vercel e Supabase (Petrosul/Enpulse)
 
+> **Documento histórico do MVP.** Para a nova plataforma, seguir [o plano](plataforma/PLANO.md) e [o runbook do Supabase](sdd/SUPABASE.md). A proposta abaixo de compartilhar login da Vercel não é diretriz da plataforma: acessos devem ser individuais e auditáveis. Preços, limites e telas de provedores exigem nova conferência antes de qualquer contratação.
+
 Convidados G4: `fernando.santos@g4educacao.com` e `lucas.reis@g4educacao.com`
 
 **Regra de governança:** crie tudo com um e-mail corporativo de TI (ex.: `ti@...` ou `sistemas@...`), não pessoal, ative 2FA e **não compartilhe senha**: convide cada pessoa com o próprio e-mail. Assim a empresa é dona do código e dos dados, e o acesso do G4 pode ser removido ao fim da mentoria com um clique (trilha de auditoria por usuário).

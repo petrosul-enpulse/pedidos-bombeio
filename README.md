@@ -1,5 +1,7 @@
 # Pedido de Bombeio | Base Paulínia (MVP)
 
+> **Evolução em planejamento:** a plataforma de dois portais está descrita em [docs/plataforma/PLANO.md](docs/plataforma/PLANO.md) e governada por [AGENTS.md](AGENTS.md). O schema `enpulse_bombeio` foi criado e verificado vazio/privado, mas o projeto remoto deixou de aparecer na conexão na verificação posterior. É preciso confirmar sua disponibilidade antes de continuar migrações. A aplicação atual ainda aponta para o modelo legado em `public`.
+
 Formulário web para o cliente enviar o pedido de bombeio do dia (BPMN: até 12h), substituindo WhatsApp/telefone + digitação na planilha `bombeiopedido.xlsx`.
 
 **Campos:** CNPJ do cliente (máscara + validação dos dígitos, já aceita o CNPJ alfanumérico em vigor desde jul/2026) e, para GAS A, S500 A e S10 A: quantidade de bombeio e previsão de venda do dia seguinte (m³).
@@ -31,7 +33,7 @@ npm run dev                  # http://localhost:3000
 ```
 
 ## Publicar
-Ver `docs/CONTAS.md`: rodar `supabase/schema.sql` no Supabase, subir para o GitHub, importar na Vercel com as 2 variáveis de ambiente.
+Para o MVP legado, ver `docs/CONTAS.md`. O deploy manual do projeto existente na Vercel está descrito em [docs/DEPLOY_VERCEL.md](docs/DEPLOY_VERCEL.md). Antes de publicar, confirme a disponibilidade do projeto Supabase e as variáveis de produção na Vercel.
 
 ## Consultar os pedidos do dia (SQL Editor do Supabase)
 ```sql
