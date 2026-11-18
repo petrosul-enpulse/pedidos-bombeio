@@ -1,5 +1,7 @@
 # Plataforma de bombeio Enpulse — plano técnico e lógico
 
+> Revisão pós-reunião: [requisitos de 17/11 e plano inicial de frontend](REVISAO_REUNIAO_E_PLANO_FRONTEND.md). Ela explicita D+1, janela de envio, programação de sexta, análise de estoque e as diferenças em relação a esta arquitetura inicial.
+
 **Estado:** arquitetura de referência com implementação local em `feat/plataforma-enpulse`, 18/11/2026. **Projeto Supabase de destino:** ainda não criado. **Schema de domínio:** `enpulse_bombeio`, definido nas migrações locais. A antiga referência `qzrwgxxltwzlkszozoca` não é alvo de implantação. A ativação está em [ATIVACAO.md](ATIVACAO.md).
 
 ## 1. Resultado esperado e situação atual
