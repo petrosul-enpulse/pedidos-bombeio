@@ -32,8 +32,8 @@ button:disabled { cursor: wait; }
 .site-shell { min-height: 100vh; display: flex; flex-direction: column; }
 .container { width: min(100% - 48px, 1160px); margin-inline: auto; }
 .site-header {
-  background: var(--surface);
-  border-bottom: 1px solid #e9eee7;
+  background: var(--brand-deep);
+  border-bottom: 1px solid #245626;
 }
 .header-inner {
   min-height: 86px;
@@ -48,12 +48,12 @@ button:disabled { cursor: wait; }
   height: 42px;
   display: grid;
   place-items: center;
-  color: var(--brand);
+  color: #b7e78a;
 }
 .brand-icon svg { width: 40px; height: 40px; }
 .brand-text { display: flex; flex-direction: column; line-height: 1; }
 .brand-text strong {
-  color: var(--wordmark);
+  color: #ffffff;
   font-size: 29px;
   font-weight: 800;
   letter-spacing: -.065em;
@@ -61,19 +61,19 @@ button:disabled { cursor: wait; }
 }
 .brand-text small {
   margin-top: 6px;
-  color: #78837a;
+  color: #d9efcf;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: .13em;
   text-transform: uppercase;
 }
 .header-base {
-  color: #47564a;
+  color: #f2f9ee;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: .025em;
 }
-.header-base span { color: var(--brand); padding-inline: 4px; }
+.header-base span { color: #b7e78a; padding-inline: 4px; }
 
 main.container { flex: 1; }
 .eyebrow {
