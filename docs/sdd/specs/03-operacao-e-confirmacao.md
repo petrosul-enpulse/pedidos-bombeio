@@ -1,6 +1,6 @@
 # 03 — Fila, análise e confirmação Enpulse
 
-**Estado:** proposta; aprovação do cliente para ajustes pendente de decisão.
+**Estado:** implementação local parcial; aprovação do cliente para ajustes pendente de decisão.
 **Atores:** leitura, operador, gestor e administrador Enpulse; cliente em acompanhamento.
 **Dependências:** `01-identidade-e-acesso.md`, `02-pedido-e-reenvio.md`.
 
@@ -44,3 +44,8 @@ Medir tempo de recebimento até análise/confirmação, pedidos após corte, con
 - Enpulse ainda não definiu se ajuste exige aprovação do cliente. Se sim, especificar estado `aguardando_cliente`, prazo, aceitação, recusa e expiração antes de implementar a confirmação final. Dono: operação Enpulse.
 - Papéis exatos de confirmação/recusa e SLA. Dono: gestão Enpulse.
 - Separação entre comentário interno e justificativa visível ao cliente. Dono: operação Enpulse.
+
+## Evidências locais
+
+- A fila filtra por data, base e situação, exclui versões substituídas e pagina 50 registros; o detalhe mostra solicitado, previsão e confirmado. Operador/gestor assumem, gestor confirma ou recusa com controle de versão.
+- `pnpm test` verifica bloqueio de leitura, conflito de versão, motivo obrigatório para ajuste, evento atômico e criação da outbox. O envio efetivo do e-mail, exportação auditada e validação visual no ambiente alvo continuam pendentes.
