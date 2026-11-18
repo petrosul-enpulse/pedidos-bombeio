@@ -48,4 +48,4 @@ Medir tempo de recebimento até análise/confirmação, pedidos após corte, con
 ## Evidências locais
 
 - A fila filtra por data, base e situação, exclui versões substituídas e pagina 50 registros; o detalhe mostra solicitado, previsão e confirmado. Operador/gestor assumem, gestor confirma ou recusa com controle de versão.
-- `pnpm test` verifica bloqueio de leitura, conflito de versão, motivo obrigatório para ajuste, evento atômico e criação da outbox. O envio efetivo do e-mail, exportação auditada e validação visual no ambiente alvo continuam pendentes.
+- `pnpm test` verifica bloqueio de leitura, conflito de versão, motivo obrigatório para ajuste, evento atômico, outbox, reserva da notificação e exportação auditada. O envio efetivo do e-mail e a validação visual no ambiente alvo continuam pendentes.

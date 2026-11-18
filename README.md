@@ -1,6 +1,6 @@
 # Pedido de Bombeio | Base Paulínia (MVP)
 
-> **Nova plataforma em branch:** `feat/plataforma-enpulse` contém os portais `/cliente` e `/operacao`, acesso individual, pedidos e reenvios, fila operacional e migrações do schema `enpulse_bombeio`. O projeto Supabase de destino ainda será criado. Veja [ativação](docs/plataforma/ATIVACAO.md) e [arquitetura](docs/plataforma/PLANO.md). A página `/` e `/api/pedidos` continuam no modelo legado.
+> **Nova plataforma em branch:** `feat/plataforma-enpulse` contém os portais `/cliente` e `/operacao`, acesso individual, pedidos e reenvios, fila operacional, exportação CSV auditada, trabalhador de notificações e migrações do schema `enpulse_bombeio`. O projeto Supabase de destino ainda será criado. Veja [ativação](docs/plataforma/ATIVACAO.md) e [arquitetura](docs/plataforma/PLANO.md). A página `/` e `/api/pedidos` continuam no modelo legado.
 
 Formulário web para o cliente enviar o pedido de bombeio do dia (BPMN: até 12h), substituindo WhatsApp/telefone + digitação na planilha `bombeiopedido.xlsx`.
 

@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { PLATFORM_SCHEMA, platformConfigured } from "@/lib/platform/config";
 import { createPlatformServerClient } from "@/lib/platform/server";
 import { SetupPending } from "../setup-pending";
+import { ExportButton } from "./export-button";
 
 export const dynamic = "force-dynamic";
 
@@ -73,7 +74,7 @@ export default async function OperacaoPage({ searchParams }: {
         <div className="platform-card platform-stat"><span className="platform-kicker">Após o corte</span><strong>{tardios ?? 0}</strong><small>Exigem atenção operacional</small></div>
         <div className="platform-card platform-stat"><span className="platform-kicker">Confirmados</span><strong>{confirmados ?? 0}</strong><small>Concluídos na seleção</small></div>
       </div>
-      <section className="platform-section" aria-labelledby="fila-title"><div className="platform-section-title"><h2 id="fila-title">Pedidos do dia</h2><span className="platform-kicker">{totalFiltrado ?? 0} resultados</span></div>
+      <section className="platform-section" aria-labelledby="fila-title"><div className="platform-section-title"><h2 id="fila-title">Pedidos do dia</h2><div className="platform-heading-actions"><span className="platform-kicker">{totalFiltrado ?? 0} resultados</span><ExportButton data={data} base={base} /></div></div>
         {pedidos?.length ? <div className="platform-table-wrap"><table className="platform-table">
           <thead><tr><th>Protocolo</th><th>Cliente</th><th>Envio</th><th>Situação</th><th>Prazo</th><th></th></tr></thead>
           <tbody>{pedidos.map((pedido) => <tr key={pedido.id}>

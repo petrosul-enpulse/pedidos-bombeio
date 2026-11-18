@@ -35,6 +35,8 @@ async function main() {
     "20261118000002_enpulse_bombeio_core.sql",
     "20261118000003_criar_pedido.sql",
     "20261118000004_operacao.sql",
+    "20261118000005_exportacao.sql",
+    "20261118000006_notificacoes.sql",
   ]) {
     const sql = await readFile(new URL(file, migrationDir), "utf8");
     await db.exec(sql);
@@ -122,6 +124,22 @@ async function main() {
   assert.equal(audit.total, 3, "recebimento, análise e confirmação têm evento");
   const { rows: [outbox] } = await db.query(`select count(*)::int as total from enpulse_bombeio.notificacoes_outbox`);
   assert.equal(outbox.total, 1, "confirmação cria notificação para o contato do cliente");
+  await assert.rejects(() => as(users.a,
+    `select enpulse_bombeio.exportar_pedidos(current_date,null)`), /não autorizada/i);
+  const { rows: [exported] } = await as(users.manager,
+    `select enpulse_bombeio.exportar_pedidos((now() at time zone 'America/Sao_Paulo')::date,null) as pedidos`);
+  assert.equal(exported.pedidos.length, 3, "gestor exporta inclusive versões substituídas para auditoria");
+  const { rows: [exportsAudit] } = await db.query("select quantidade from enpulse_bombeio.exportacoes");
+  assert.equal(exportsAudit.quantidade, 3);
+  await assert.rejects(() => as(users.manager,
+    "select enpulse_bombeio.reservar_notificacoes(10)"), /permission denied/i);
+  await db.exec("set role service_role");
+  const { rows: [claimed] } = await db.query("select enpulse_bombeio.reservar_notificacoes(10) as notificacoes");
+  assert.equal(claimed.notificacoes.length, 1);
+  const { rows: [emptyClaim] } = await db.query("select enpulse_bombeio.reservar_notificacoes(10) as notificacoes");
+  assert.equal(emptyClaim.notificacoes.length, 0, "reserva impede outro trabalhador de tomar o mesmo e-mail");
+  await db.query(`update enpulse_bombeio.notificacoes_outbox set estado='enviada', enviada_em=now(), reserva_ate=null where id=${claimed.notificacoes[0].id}`);
+  await db.exec("reset role");
   console.log("Migrações e isolamento de clientes verificados localmente.");
   await db.close();
 }

@@ -195,7 +195,7 @@ Tickets verticais e dependências estão em `.scratch/enpulse-plataforma/issues/
 4. Quem pode confirmar/recusar, quais motivos são obrigatórios, e qual o SLA real de confirmação por base?
 5. Período de retenção, destinatários de notificações e regras de exportação de dados.
 
-Premissas implementadas localmente para permitir a revisão: integrantes entram por OTP de e-mail com vínculo individual; gestor confirma ajustes diretamente com motivo público; reenvio é permitido enquanto o pedido estiver `recebido` ou `em_analise`, no mesmo dia operacional. A Enpulse deve validar essas regras antes do corte. A implementação local cobre acesso, envio, reenvio, consulta e operação; envio de notificações, exportação, administração, importação do legado e ativação remota permanecem etapas posteriores.
+Premissas implementadas localmente para permitir a revisão: integrantes entram por OTP de e-mail com vínculo individual; gestor confirma ajustes diretamente com motivo público; reenvio é permitido enquanto o pedido estiver `recebido` ou `em_analise`, no mesmo dia operacional. A Enpulse deve validar essas regras antes do corte. A implementação local cobre acesso, envio, reenvio, consulta, operação, exportação auditada e trabalhador de notificações configurável. Administração de cadastros, importação do legado, agendamento do trabalhador e ativação remota permanecem etapas posteriores.
 
 ## Fontes técnicas consultadas
 
